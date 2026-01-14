@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<!-- saved from url=(0029)https://fantasyadventure.net/ -->
 <html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1593,6 +1594,29 @@
 </div>`;
             const CONFIG = {
                 rarityProb: { common: 0.5, uncommon: 0.3, rare: 0.15, epic: 0.04, legendary: 0.01 },
+                lootdata_rarityProb: {
+                    normal: {
+                        common: 0.5,
+                        uncommon: 0.3,
+                        rare: 0.12,
+                        epic: 0.05,
+                        legendary: 0.02,
+                        mythic: 0.01
+                    },
+                    inferno: {
+                        rare: 0.3,
+                        epic: 0.3,
+                        legendary: 0.2,
+                        mythic: 0.05,
+                        ultra: 0.0001
+                    },
+                    heaven: {
+                        epic: 0.05,
+                        legendary: 0.05,
+                        mythic: 0.05,
+                        genesis: 0.05
+                    }
+                },
                 rarityDisplay: {
                     common: { color: "rarity-common", label: "一般", val: 1 },
                     uncommon: { color: "rarity-uncommon", label: "優質", val: 2 },
@@ -1876,7 +1900,11 @@
                     // Armor
                     { id: "a_light_robe", name: "賭桌-光之羽衣", type: "armor", val: 8888, rarity: "genesis", icon: "🥻", desc: "[浮空] 30% 機率閃避攻擊" }
                 ],
-
+                sinBuffs: {
+                        sloth_curse: { id: 'sloth_curse', name: '💤 懶惰的詛咒', type: 'debuff', desc: '無法攻擊，只能逃跑 (剩餘 10 場)' },
+                        greed_shackle: { id: 'greed_shackle', name: '⛓️ 黃金枷鎖', type: 'debuff', desc: '敏捷下降，受傷增加 20% (需找惡魔商人消除)' },
+                        lust_charm: { id: 'lust_charm', name: '💋 媚氣環繞', type: 'debuff', desc: '每次遭遇事件扣除 10% 最大生命' }
+                    },
                 sinMonsters: [
                     { name: "鏡像", icon: "👤", hp: 1, atk: 1, drop: "", tier: "boss" }, // 數值動態生成
                     { name: "狂戰士", icon: "⛓️", hp: 40000, atk: 1000, drop: "", tier: "boss" },
@@ -1936,67 +1964,69 @@
                 },
                 // 更新 Loot Table (整合彈弓與鉤子)
                 lootData: {
-                    "史萊姆黏液": { price: 10, rarity: "common", icon: "💧" },
-                    "史萊姆精華": { price: 50, rarity: "uncommon", icon: "✨" },
-                    "史萊姆王冠": { price: 200, rarity: "rare", icon: "👑" },
-                    "破布": { price: 15, rarity: "common", icon: "🧶" },
-                    "哥布林耳環": { price: 60, rarity: "uncommon", icon: "💍" },
-                    "哥布林金牙": { price: 250, rarity: "rare", icon: "🦷" },
-                    "狼皮": { price: 20, rarity: "common", icon: "🧵" },
-                    "狼牙": { price: 80, rarity: "uncommon", icon: "🦴" },
-                    "狼王披風": { price: 300, rarity: "rare", icon: "🧣" },
-                    "骨頭": { price: 25, rarity: "common", icon: "🦴" },
-                    "靈魂碎片": { price: 100, rarity: "uncommon", icon: "👻" },
-                    "死靈頭骨": { price: 350, rarity: "rare", icon: "💀" },
-                    "斷劍": { price: 30, rarity: "common", icon: "🗡️" },
-                    "半獸人護符": { price: 120, rarity: "uncommon", icon: "🧿" },
-                    "戰爭號角": { price: 400, rarity: "rare", icon: "📯" },
-                    "靈質": { price: 35, rarity: "common", icon: "🌫️" },
-                    "怨念集合體": { price: 150, rarity: "uncommon", icon: "👿" },
-                    "幽靈提燈": { price: 450, rarity: "rare", icon: "🏮" },
-                    "石塊": { price: 50, rarity: "common", icon: "🪨" },
-                    "魔力核心": { price: 200, rarity: "rare", icon: "🔮" },
-                    "大地之心": { price: 600, rarity: "epic", icon: "💎" },
-                    "巨棒": { price: 60, rarity: "common", icon: "🪵" },
-                    "食人妖之血": { price: 250, rarity: "rare", icon: "🩸" },
-                    "食人妖圖騰": { price: 700, rarity: "epic", icon: "🗿" },
-                    "龍鱗": { price: 100, rarity: "uncommon", icon: "🛡️" },
-                    "龍之淚": { price: 400, rarity: "rare", icon: "💧" },
-                    "龍心": { price: 800, rarity: "epic", icon: "❤️" },
-                    "黑暗物質": { price: 200, rarity: "rare", icon: "⚫" },
-                    "魔王印記": { price: 500, rarity: "epic", icon: "🔯" },
-                    "魔神之眼": { price: 1000, rarity: "legendary", icon: "👁️" },
-                    "真實之心": { price: 5000, rarity: "mythic", icon: "💖" },
-                    // 煉獄素材
-                    "暗影凝膠": { price: 1000, rarity: "mythic", icon: "⚫" },
-                    "虛空之塵": { price: 1200, rarity: "mythic", icon: "🌫️" },
-                    "熔岩核心": { price: 1500, rarity: "mythic", icon: "🔥" },
-                    "夢魘之角": { price: 1800, rarity: "mythic", icon: "🦄" },
-                    "腐朽鎧甲": { price: 3000, rarity: "mythic", icon: "🛡️" },
-                    "混沌神經": { price: 3500, rarity: "mythic", icon: "🧠" },
-                    "鮮血精華": { price: 5000, rarity: "mythic", icon: "🩸" },
-                    "命匣碎片": { price: 6000, rarity: "mythic", icon: "💀" },
-                    "魔龍逆鱗": { price: 10000, rarity: "mythic", icon: "🐲" },
-                    "不可名狀之物": { price: 50000, rarity: "ultra", icon: "🐙" },
-                    // 新增道具
-                    "彈弓": { price: 0, rarity: "rare", icon: "🪃", desc: "遭遇哈比時必定擊退哈比，發動後消失，無法出售" },
-                    "鉤子": { price: 0, rarity: "rare", icon: "🪝", desc: "遭遇跌倒事件時可以躲避一次並獲得物品，發動後消失，無法出售" },
-                    "天空號角的部件": { price: 0, rarity: "mythic", icon: "🎺", desc: "神之代行者掉落的碎片，可用於製作通往天界的鑰匙", type: "material" },
-
-                    // 天界素材
-                    "天使之羽": { price: 3000, rarity: "genesis", icon: "🪶" },
-                    "真理殘頁": { price: 3500, rarity: "genesis", icon: "📄" },
-                    "天界齒輪": { price: 4000, rarity: "genesis", icon: "⚙️" },
-                    "聖白石": { price: 4500, rarity: "genesis", icon: "⬜" },
-                    "凝固的旋律": { price: 3000, rarity: "genesis", icon: "🎼" },
-                    "審判天平": { price: 8000, rarity: "genesis", icon: "⚖️" },
-                    "極光精華": { price: 7000, rarity: "genesis", icon: "✨" },
-                    "雙子核心": { price: 15000, rarity: "genesis", icon: "🎭" },
-                    "號角殘片": { price: 50000, rarity: "genesis", icon: "📯", desc: "來自末日號角的碎片", type: "material" },
-                    "超立方體": { price: 50000, rarity: "genesis", icon: "🧊", desc: "超越三維空間的物體", type: "material" },
-                    "創世火種": { price: 100000, rarity: "genesis", icon: "🌞", desc: "蘊含著創造之力的火種", type: "material" },
+                    // 表世界 (Normal World)
+                    "史萊姆黏液": { price: 10, rarity: "common", icon: "💧", location: 'normal' },
+                    "史萊姆精華": { price: 50, rarity: "uncommon", icon: "✨", location: 'normal' },
+                    "史萊姆王冠": { price: 200, rarity: "rare", icon: "👑", location: 'normal' },
+                    "破布": { price: 15, rarity: "common", icon: "🧶", location: 'normal' },
+                    "哥布林耳環": { price: 60, rarity: "uncommon", icon: "💍", location: 'normal' },
+                    "哥布林金牙": { price: 250, rarity: "rare", icon: "🦷", location: 'normal' },
+                    "狼皮": { price: 20, rarity: "common", icon: "🧵", location: 'normal' },
+                    "狼牙": { price: 80, rarity: "uncommon", icon: "🦴", location: 'normal' },
+                    "狼王披風": { price: 300, rarity: "rare", icon: "🧣", location: 'normal' },
+                    "骨頭": { price: 25, rarity: "common", icon: "🦴", location: 'normal' },
+                    "靈魂碎片": { price: 100, rarity: "uncommon", icon: "👻", location: 'normal' },
+                    "死靈頭骨": { price: 350, rarity: "rare", icon: "💀", location: 'normal' },
+                    "斷劍": { price: 30, rarity: "common", icon: "🗡️", location: 'normal' },
+                    "半獸人護符": { price: 120, rarity: "uncommon", icon: "🧿", location: 'normal' },
+                    "戰爭號角": { price: 400, rarity: "rare", icon: "📯", location: 'normal' },
+                    "靈質": { price: 35, rarity: "common", icon: "🌫️", location: 'normal' },
+                    "怨念集合體": { price: 150, rarity: "uncommon", icon: "👿", location: 'normal' },
+                    "幽靈提燈": { price: 450, rarity: "rare", icon: "🏮", location: 'normal' },
+                    "石塊": { price: 50, rarity: "common", icon: "🪨", location: 'normal' },
+                    "魔力核心": { price: 200, rarity: "rare", icon: "🔮", location: 'normal' },
+                    "大地之心": { price: 600, rarity: "epic", icon: "💎", location: 'normal' },
+                    "巨棒": { price: 60, rarity: "common", icon: "🪵", location: 'normal' },
+                    "食人妖之血": { price: 250, rarity: "rare", icon: "🩸", location: 'normal' },
+                    "食人妖圖騰": { price: 700, rarity: "epic", icon: "🗿", location: 'normal' },
+                    "龍鱗": { price: 100, rarity: "uncommon", icon: "🛡️", location: 'normal' },
+                    "龍之淚": { price: 400, rarity: "rare", icon: "💧", location: 'normal' },
+                    "龍心": { price: 800, rarity: "epic", icon: "❤️", location: 'normal' },
+                    "黑暗物質": { price: 200, rarity: "rare", icon: "⚫", location: 'normal' },
+                    "魔王印記": { price: 500, rarity: "epic", icon: "🔯", location: 'normal' },
+                    "魔神之眼": { price: 1000, rarity: "legendary", icon: "👁️", location: 'normal' },
+                    "真實之心": { price: 5000, rarity: "mythic", icon: "💖", location: 'normal' },
+                    "彈弓": { price: 0, rarity: "rare", icon: "🪃", location: 'normal', desc: "遭遇哈比時必定擊退哈比，發動後消失，無法出售" },
+                    "鉤子": { price: 0, rarity: "rare", icon: "🪝", location: 'normal', desc: "遭遇跌倒事件時可以躲避一次並獲得物品，發動後消失，無法出售" },
+                    
+                    // 煉獄素材 (Inferno Materials)
+                    "暗影凝膠": { price: 1000, rarity: "mythic", icon: "⚫", location: 'inferno' },
+                    "虛空之塵": { price: 1200, rarity: "mythic", icon: "🌫️", location: 'inferno' },
+                    "熔岩核心": { price: 1500, rarity: "mythic", icon: "🔥", location: 'inferno' },
+                    "夢魘之角": { price: 1800, rarity: "mythic", icon: "🦄", location: 'inferno' },
+                    "腐朽鎧甲": { price: 3000, rarity: "mythic", icon: "🛡️", location: 'inferno' },
+                    "混沌神經": { price: 3500, rarity: "mythic", icon: "🧠", location: 'inferno' },
+                    "鮮血精華": { price: 5000, rarity: "mythic", icon: "🩸", location: 'inferno' },
+                    "命匣碎片": { price: 6000, rarity: "mythic", icon: "💀", location: 'inferno' },
+                    "魔龍逆鱗": { price: 10000, rarity: "mythic", icon: "🐲", location: 'inferno' },
+                    "不可名狀之物": { price: 50000, rarity: "ultra", icon: "🐙", location: 'inferno' },
+                    "天空號角的部件": { price: 0, rarity: "mythic", icon: "trumpet", location: 'inferno', desc: "神之代行者掉落的碎片，可用於製作通往天界的鑰匙", type: "material" },
+                    
+                    // 天界素材 (Heaven Materials)
+                    "天使之羽": { price: 3000, rarity: "genesis", icon: "🪶", location: 'heaven' },
+                    "真理殘頁": { price: 3500, rarity: "genesis", icon: "📄", location: 'heaven' },
+                    "天界齒輪": { price: 4000, rarity: "genesis", icon: "⚙️", location: 'heaven' },
+                    "聖白石": { price: 4500, rarity: "genesis", icon: "⬜", location: 'heaven' },
+                    "凝固的旋律": { price: 3000, rarity: "genesis", icon: "🎼", location: 'heaven' },
+                    "審判天平": { price: 8000, rarity: "genesis", icon: "⚖️", location: 'heaven' },
+                    "極光精華": { price: 7000, rarity: "genesis", icon: "✨", location: 'heaven' },
+                    "雙子核心": { price: 15000, rarity: "genesis", icon: "🎭", location: 'heaven' },
+                    "號角殘片": { price: 50000, rarity: "genesis", icon: "📯", location: 'heaven', desc: "來自末日號角的碎片", type: "material" },
+                    "超立方體": { price: 50000, rarity: "genesis", icon: "🧊", location: 'heaven', desc: "超越三維空間的物體", type: "material" },
+                    "創世火種": { price: 100000, rarity: "genesis", icon: "🌞", location: 'heaven', desc: "蘊含著創造之力的火種", type: "material" },
+                    
                     // [NEW] 雅各天梯大獎
-                    "威光": { price: 99999, rarity: "genesis", icon: "🌅", desc: "使用後扣除怪物現有血量的 50% (戰鬥限定)", type: "consumable" }
+                    "威光": { price: 99999, rarity: "genesis", icon: "🌅", location: 'heaven', desc: "使用後扣除怪物現有血量的 50% (戰鬥限定)", type: "consumable" }
                 },
                 buffs: {
                     angel_song: { id: 'angel_song', name: '👼 天使的歌頌', type: 'angel', desc: '每次事件恢復 5 HP' },
@@ -2837,6 +2867,8 @@
                         this.showFloatingText("💗 莉莉絲參戰!", "#ff69b4");
                         setTimeout(() => {
                             alert("💗 莉莉絲出現了！\n\n「我就陪你瘋這一次吧。」\n\n(獲得狀態：莉莉絲的祝福，生命 +10000)");
+                            if (Player.debuff)
+                                Player.debuff = null;
                             this.checkAchievements();
                         }, 100);
                     }
@@ -3035,7 +3067,7 @@
                     // 處理 Buff 加成
                     if (Player.buff) {
                         if (Player.buff.id === 'angel_courage') rate += 0.20; // 改為 += 累加
-                        if (Player.buff.id === 'demon_enhance') rate = 0.50;  // 固定值
+                        if (Player.buff.id === 'demon_enhance') rate += 0.50;  // 固定值
                     }
 
                     // 處理飾品加成
@@ -3143,7 +3175,7 @@
                     // --- [FIX] 混沌魔方邏輯移至最上方 ---
                     if (Player.equipment.accessories.some(a => a && a.id === 'acc_chaos')) {
                         Player.chaosRoll = (Math.random() * 2.7 + 0.8).toFixed(2); // 0.5 - 3.0
-                        this.showFloatingText(`🎲 混沌: x${Player.chaosRoll}`, "#ff00ff");
+                        setTimeout(() => this.showFloatingText(`🎲 混沌: x${Player.chaosRoll}`, "#ff00ff"), 500);
                     } else {
                         Player.chaosRoll = 1;
                     }
@@ -3151,7 +3183,7 @@
                     if (Player.equipment.accessories.some(a => a && a.id === 'acc_transcendence')) {
                         Player.transcendenceRoll = (Math.random() * 4.0 + 1.0).toFixed(2);
                         // 延遲一點顯示，避免文字重疊
-                        setTimeout(() => Game.showFloatingText(`🧊 超越: x${Player.transcendenceRoll}`, "#00ffff"), 300);
+                        setTimeout(() => Game.showFloatingText(`🧊 超越: x${Player.transcendenceRoll}`, "#00ffff"), 1000);
                     } else {
                         Player.transcendenceRoll = 1;
                     }
@@ -3252,7 +3284,7 @@
                         Player.hp = Math.min(Player.maxHp, Player.hp + regen);
                         this.showFloatingText(`+${regen} HP`, "#69f0ae");
                     }
-                    if (Math.random() < 0.01) {
+                    if (Math.random() < 0.02) {
                         this.triggerFairyEvent();
                         this.updateUI();
                         return;
@@ -3462,8 +3494,8 @@
                     // 原本的邏輯...
                     Player.gold = 0;
                     Player.elderEnhanceCount++;
-		    const upgrade_weight = 800;
-		    const upgrade_point = (600 + Player.elderEnhanceCount * upgrade_weight * Math.random());
+                    const upgrade_weight = 800;
+                    const upgrade_point = Math.floor((600 + Player.elderEnhanceCount * upgrade_weight * Math.random()));
                     // [修改] 數值改為 +upgrade_point
                     Player.baseMaxHp += upgrade_point;
                     Player.maxHp += upgrade_point;
@@ -3606,12 +3638,18 @@
                     // 原本的邏輯...
                     Player.gold = 0;
                     Player.fairyEnhanceCount++;
-		    const upgrade_weight = 50;
-		    const upgrade_point = (100 + Player.fairyEnhanceCount * upgrade_weight * Math.random());
+                    const upgrade_weight = 50;
+                    const upgrade_point = Math.floor((100 + Player.fairyEnhanceCount * upgrade_weight * Math.random()));
                     Player.baseMaxHp += upgrade_point;
                     Player.maxHp += upgrade_point;
                     Player.hp += upgrade_point;
                     Player.baseAtk += upgrade_point;
+
+                    Player.baseMaxHp = Math.floor(Player.baseMaxHp);
+                    Player.maxHp = Math.floor(Player.maxHp);
+                    Player.hp = Math.floor(Player.hp);
+                    Player.baseAtk = Math.floor(Player.baseAtk);
+
 
                     this.showFloatingText("基礎能力大幅提升!", "#00ffcc");
                     this.renderEvent("🧚 精靈的魔法", "金幣化為光粉融入你的身體。", `最大生命 +${upgrade_point} / 基礎攻擊 +${upgrade_point}<br>(已強化 ${Player.fairyEnhanceCount}/5 次)`, "✨");
@@ -3841,10 +3879,10 @@
                 resolveBloodAltar() {
                     const cost = Math.floor(Player.hp * 0.5);
                     Player.hp -= cost;
-                    this.showFloatingText(`-${cost} HP`, "red");
+                    setTimeout(() => this.showFloatingText(`-${cost} HP`, "red"), 300);
 
                     // 成功機率 20%
-                    if (Math.random() < 0.50) {
+                    if (Math.random() < 0.30) {
 
                         // 在成功的情況下，判定掉落物
                         // 1% 機率掉落超越魔方 (這裡指成功判定內的 1%，非常稀有)
@@ -3857,17 +3895,26 @@
                             this.renderEvent("🩸 祭壇的奇蹟", "血液沸騰，凝聚成了不可思議的形狀！", `獲得 <span class='rarity-mythic'>${cube.name}</span>`, "🧊");
                         } else {
                             // 其他神話裝備
-                            const poolIds = ['w_ragnarok', 'w_soulreaver', 'a_voidwalker', 'acc_wheel', 'acc_chaos'];
+                            const poolIds = ['w_ragnarok', 'w_soulreaver', 'a_voidwalker', 'acc_wheel', 'acc_chaos', 's_demon_wall'];
                             const targetId = poolIds[Math.floor(Math.random() * poolIds.length)];
                             const item = CONFIG.infernoItems.find(i => i.id === targetId);
-
                             const newItem = Object.assign({}, item);
                             this.addItemToInventory(newItem);
                             this.renderEvent("🩸 祭壇的回應", "血霧中浮現出一件神器...", `獲得 <span class='rarity-mythic'>${newItem.name}</span>`, "🎁");
                         }
                     } else {
                         // 80% 失敗
-                        this.renderEvent("🩸 祭壇的沉默", "血液乾涸了，什麼也沒發生。", "你的犧牲白費了...", "🕸️");
+                        if ((Math.floor(Math.random() * 100)) % 2)
+                        {
+                                        const poolIds = ['phoenix_feather', 'c_harpy_blood', 'c_pure_blood', 'c_harpy_blood', 'c_harpy_blood', 'c_harpy_blood'];
+                                        const targetId = poolIds[Math.floor(Math.random() * poolIds.length)];
+                                        const item = CONFIG.infernoItems.find(i => i.id === targetId);
+                                        const newItem = Object.assign({}, item);
+                                        this.addItemToInventory(newItem);
+                                        this.renderEvent("🩸 祭壇的回應", "血霧中殘留...", `獲得 <span class='rarity-mythic'>${newItem.name}</span>`, "🎁");
+                        }
+                        else
+	                        this.renderEvent("🩸 祭壇的沉默", "血液乾涸了，什麼也沒發生。", "你的犧牲白費了...", "🕸️");
                     }
 
                     // 檢查是否因為獻祭而死 (理論上減半不會死，除非剩1)
@@ -3895,25 +3942,23 @@
                         }
                         else
                         {
-			    if(Player.hp < (Player.maxHp * Math.random())
-			    {
-	                    	const target = equippedAccs[Math.floor(Math.random() * equippedAccs.length)];
-	                    	Player.equipment.accessories[target.idx] = null;
-	                    	this.recalcStats();
-	                   	this.renderEvent("🐮 牛頭人衝撞！", "一隻瘋狂的牛頭人撞飛了你！", `你的 <span class='damage-text'>${target.item.name}</span> 被撞飛遺失了！`, "💨");
-			    }
-			    else
-			    {
-				const dmg = 300;
-	                        dmg = Player.hp * 0.1 + 300 * Math.random();
-			    	this.renderEvent("🐮 牛頭人衝撞！", "你扛住了瘋狂的牛頭人的撞擊！", `受到 ${dmg} 傷害！`, "🤕");
-			    }
+                            if(Player.hp < (Player.maxHp * Math.random()))
+                            {
+                                const target = equippedAccs[Math.floor(Math.random() * equippedAccs.length)];
+                                Player.equipment.accessories[target.idx] = null;
+                                this.recalcStats();
+                                this.renderEvent("🐮 牛頭人衝撞！", "一隻瘋狂的牛頭人撞飛了你！", `你的 <span class='damage-text'>${target.item.name}</span> 被撞飛遺失了！`, "💨");
+                            }
+                            else
+                            {
+                                const dmg = Math.floor(Player.hp * 0.1 + 300 * Math.random());
+                                this.renderEvent("🐮 牛頭人衝撞！", "你扛住了瘋狂的牛頭人的撞擊！", `受到 ${dmg} 傷害！`, "🤕");
+                            }
                         }
                     } 
                     else
                     {
-                        const dmg = 300;
-                        dmg = Player.hp * 0.5 + Math.random() * dmg;
+                        const dmg = Math.floor(Player.hp * 0.5 + Math.random() * 300);
                         Player.hp = Player.hp - dmg;
                         this.renderEvent("🐮 牛頭人衝撞！", "一隻瘋狂的牛頭人撞飛了你！", `你沒有飾品可掉，受到 ${dmg} 傷害！`, "🤕");
                     }
@@ -3935,13 +3980,13 @@
                     const rand = Math.random();
 
                     // 結果 1: 紅布 (20%)
-                    if (rand < 0.15) {
+                    if (rand < 0.10) {
                         const item = CONFIG.infernoItems.find(i => i.id === 'acc_red_cloth');
                         this.addItemToInventory({ ...item });
                         this.renderEvent("🧣 迷宮的角落", "你在角落發現了一塊鮮豔的布。", `獲得 <span class="rarity-mythic">${item.name}</span>！`, "🧣");
                     }
                     // 結果 2: 戰斧 (20%) -> 0.20 + 0.20 = 0.40
-                    else if (rand < 0.25) {
+                    else if (rand < 0.20) {
                         const item = CONFIG.infernoItems.find(i => i.id === 'w_minotaur');
                         this.addItemToInventory({ ...item });
                         this.renderEvent("🪓 迷宮的遺產", "你在牆邊發現了一把巨大的斧頭。", `獲得 <span class="rarity-mythic">${item.name}</span>！`, "🪓");
@@ -3971,22 +4016,32 @@
                         this.addItemToInventory({ ...item });
                         this.renderEvent("🪓 迷宮的遺產", "你在牆上發現了插著一把虛空破滅劍。", `獲得 <span class="rarity-mythic">${item.name}</span>！`, "🪓");
                     }
-                    else if (rand < 0.6) {
+                    else if (rand < 0.55) {
                         const item = CONFIG.infernoItems.find(i => i.id === 's_demon_wall');
                         this.addItemToInventory({ ...item });
                         this.renderEvent("🪓 迷宮的遺產", "你在寶箱中發現了一面刻著魔神圖樣的恐怖盾牌。", `獲得 <span class="rarity-mythic">${item.name}</span>！`, "🪓");
                     }
-                    else if (rand < 0.75) {
-
-			const dmg = 1000;
-                        dmg = Player.hp * 0.2 + Math.random() * dmg;
-                        Player.hp = Player.hp - dmg;
-                        this.renderEvent("🧱 迷宮出口", "你在迷宮裡遭遇了襲擊受到 ${dmg} 傷害...耗費了很多體力", "所幸找到了出口逃了出來。", "💨");
-			if (Player.hp <= 0) { this.checkDeath("剩下一口氣"); Player.hp = 1;}
+                    else if (rand < 0.60) {
+                            
+                            const dmg = Math.floor(Player.hp * 0.2 + Math.random() * 1000);
+                            Player.hp = Player.hp - dmg;
+                            this.renderEvent("🧱 迷宮出口", "你在迷宮裡遭遇了襲擊受到 ${dmg} 傷害...耗費了很多體力", "所幸找到了出口逃了出來。", "💨");
+                            if (Player.hp <= 0) { this.checkDeath("剩下一口氣"); Player.hp = 1;}
+                    }
+                    else if (rand < 0.75)
+                    {
+                        const mats = Object.entries(CONFIG.lootData)
+                            .filter(([k, v]) => ['mythic'].includes(v.rarity))
+                            .map(([k, v]) => ({ ...v, name: k, type: 'material' }));
+                    
+                        const mat = mats[Math.floor(Math.random() * mats.length)];
+                        this.addItemToInventory(mat);
+                        this.renderEvent("🌌 迷宮產生迷霧", "迷霧散去留下強大的物質。", `獲得 <span class='rarity-mythic'>${mat.name}</span>`, "💎");
                     }
                     // 結果 3: 空空如也 (30%) -> 0.40 + 0.30 = 0.70
-                    else if (rand < 0.90) {
+                    else if (rand < 0.85) {
                         this.renderEvent("🧱 迷宮出口", "你在迷宮裡繞了很久...", "什麼也沒發現，但平安找到了出口。", "💨");
+			
                     }
                     // 結果 4: 牛頭人衝撞 (30%) -> 剩餘
                     else {
@@ -4529,7 +4584,9 @@
                             }
 
                             // 諸神黃昏
-                            if (Player.equipment.weapon && Player.equipment.weapon.id === 'w_ragnarok' && (Math.random() < (0.05 + ((enemy.maxHp - enemy.hp)/enemy.maxHp)) && !enemy.isGod && !enemy.isOldOne) {
+			    const sokushi_rate = 0.5 + ((enemy.maxHp - enemy.hp)/enemy.maxHp);
+                            if (Player.equipment.weapon && Player.equipment.weapon.id === 'w_ragnarok' && Math.random() < sokushi_rate && !enemy.isGod && !enemy.isOldOne)
+			    {
                                 enemy.hp = 0;
                                 logHtml += `<span style='color:red; font-weight:bold;'>☄️ 【諸神黃昏】 觸發！抹殺！</span><br>`;
                                 this.combatWin();
@@ -4572,7 +4629,7 @@
                             if (hit) {
                                 enemy.hp -= pDmg;
                                 this.triggerAnim('event-icon', 'anim-damage');
-                                this.showFloatingText(pDmg, isCrit ? "red" : "white");
+                                setTimeout(() => this.showFloatingText(pDmg, isCrit ? "red" : "white"), 500);
                                 logHtml += `你造成 ${isCrit ? "<span class='crit-text'>爆擊 " : ""}${pDmg}${isCrit ? "</span>" : ""} 傷害。<br>`;
 
                                 // [NEW] 賭桌-創世紀 [創造]
@@ -4602,12 +4659,12 @@
 
                             // [FIX] 修復末世之鎧效果
                             if (Player.equipment.armor && Player.equipment.armor.id === 'a_apocalypse') {
-                                if (Math.random() < 0.01) { // 1% 機率
+                                if (Math.random() < 0.08) { // 1% 機率
                                     Player.baseMaxHp += 100;
                                     Player.maxHp += 100;
                                     Player.hp += 100;
                                     logHtml += `<span style='color:#ff0000; font-weight:bold;'>🛡️ 【末世之鎧】吞噬生命！永久 HP +100</span><br>`;
-                                    this.showFloatingText("HP上限 +100", "#ff0000");
+                                    setTimeout(() => this.showFloatingText("HP上限 +100", "#ff0000"), 800);
                                 }
                             }
 
@@ -5596,13 +5653,14 @@
                         }
                     }
                     if (Player.equipment.weapon && Player.equipment.weapon.id === 'w_minotaur') {
-                        if (Math.random() < 0.02) { // 1% 機率
-			    if (Player.permanentCritBonus < 1)
-			    {
-			        Player.permanentCritBonus = Player.permanentCritBonus + 0.03;
-	                	this.showFloatingText("暴擊潛能提升!", "#ff00ff");
-	                        alert("🪓 【牛頭人戰斧】飲血進化！\n\n你的基礎暴擊率永久提升了 3%！");
-			    }
+                        if (Math.random() < 0.02) 
+			{ // 1% 機率
+            			if (Player.permanentCritBonus < 1)
+                		{
+            			       	Player.permanentCritBonus = Player.permanentCritBonus + 0.03;
+            	               		this.showFloatingText("暴擊潛能提升!", "#ff00ff");
+	            	               	this.showFloatingText("🪓 【牛頭人戰斧】飲血進化！\n\n你的基礎暴擊率永久提升了 3%！");
+           	        	} 
                         }
                     }
 
@@ -5611,7 +5669,7 @@
                             Player.baseAtk += 100;
                             this.showFloatingText("虛空吞噬! 攻+100", "#9c27b0");
                             // 可以選擇是否彈窗提示，避免太煩
-                            // alert("🌌 【虛空破滅劍】吞噬了敵人的靈魂！\n\n基礎攻擊力永久提升 100 點！");
+                             this.showFloatingText("🌌 【虛空破滅劍】吞噬了敵人的靈魂！\n\n基礎攻擊力永久提升 100 點！");
                         }
                     }
 
@@ -5694,7 +5752,7 @@
 
                     gold = Math.floor(gold * goldMul);
                     Player.gold += gold;
-                    this.showFloatingText(`+${gold} G`, "#ffd700");
+                    setTimeout(() => this.showFloatingText(`+${gold} G`, "#ffd700"), 400);
                     dropText += `金幣 +${gold} <br>`;
 
                     if (isGodKill) {
@@ -5779,6 +5837,9 @@
                         if (Math.random() < dropRate && CONFIG.lootData[dName]) {
                             drops.push({ ...CONFIG.lootData[dName], name: dName, type: "loot" });
                         }
+                        if (Math.random() < 0.05) {
+                            drops.push(this.generateRandomItemByLocation(targetLocation = "inferno", exclude = ["不可名狀之物", "天空號角的部件"], tierModifier = "normal"));
+                        }
                     }
 
                     else if (Player.inCelestial) {
@@ -5799,6 +5860,9 @@
                         if (Math.random() < dropRate && dName && CONFIG.lootData[dName]) {
                             drops.push({ ...CONFIG.lootData[dName], name: dName, type: "loot" });
                         }
+                        if (Math.random() < 0.05) {
+                            drops.push(this.generateRandomItemByLocation(targetLocation = "heaven", exclude = ["威光"], tierModifier = "normal"));
+                        }
                     }
 
                     else {
@@ -5818,11 +5882,15 @@
                         if (enemy.tier === 'boss' && enemy.bossDrop && CONFIG.lootData[enemy.bossDrop]) {
                             drops.push({ ...CONFIG.lootData[enemy.bossDrop], name: enemy.bossDrop, type: "loot" });
                         }
+                        if (Math.random() < 0.05) {
+                            drops.push(this.generateRandomItemByLocation(targetLocation = "normal", exclude = ["真實之心"], tierModifier = "normal"));
+                        }
                     }
 
                     if (Math.random() < 0.1) {
                         drops.push(this.generateRandomItem(enemy.tier));
                     }
+
 
                     drops.forEach(item => {
                         this.addItemToInventory(item);
@@ -5985,7 +6053,7 @@
                 },
                 resolveKnightHelp() {
                     if (Math.random() < 0.6) {
-                        Player.gold += 100;
+                        Player.gold += (100 + Math.random() * Player.depth);
                         this.showFloatingText("+100 G", "gold");
                         this.renderEvent("⚔️ 救援成功", "你成功擊退了怪物！", "獲得報酬 <span class='gold-text'>100 G</span>", "🎉");
                     } else {
@@ -7042,7 +7110,7 @@
                         enemy.atk *= 2;
                         // 每次戰鬥都提示
                         this.showFloatingText("世界正在崩塌...", "#ff0000");
-                        setTimeout(() => this.showFloatingText("快找到離開的方法", "#ff0000"), 1500);
+                        setTimeout(() => this.showFloatingText("快找到離開的方法", "#ff0000"), 800);
                     }
 
                     if (checkTrueForm && !Player.inInferno) {
@@ -7339,6 +7407,62 @@
                     const template = pool[Math.floor(Math.random() * pool.length)];
                     return Object.assign({}, template);
                 },
+    generateRandomItemByLocation(targetLocation = "normal", exclude = [], tierModifier = "normal") {
+        const r = Math.random();
+        let rarityKey = "common";
+        
+        // 獲取該地區對應的機率表
+        const table = CONFIG.lootdata_rarityProb[targetLocation] || CONFIG.lootdata_rarityProb.normal;
+        let acc = 0;
+
+        // 1. 根據機率表決定原始稀有度
+        const keys = Object.keys(table);
+        for (let key of keys) {
+            acc += table[key];
+            if (r <= acc) {
+                rarityKey = key;
+                break;
+            }
+        }
+
+        // 2. 依照參考範例加入 Boss 保底邏輯
+        if (tierModifier === "boss" && (rarityKey === "common" || rarityKey === "uncommon")) {
+            rarityKey = "rare";
+        }
+
+        /**
+         * 統一物件轉換與複製邏輯
+         * 確保回傳一個全新的物件，並包含 name 與預設 type
+         */
+        const transformToItem = ([name, data]) => {
+            return Object.assign({ type: 'material' }, data, { name: name });
+        };
+
+        // 3. 從 lootData 中篩選符合地區、稀有度且未被排除的道具
+        const pool = Object.entries(CONFIG.lootData)
+            .filter(([name, data]) => {
+                const isLocationMatch = data.location === targetLocation;
+                const isRarityMatch = data.rarity === rarityKey;
+                const isNotExcluded = !exclude.includes(name);
+                return isLocationMatch && isRarityMatch && isNotExcluded;
+            })
+            .map(transformToItem);
+
+        // 4. 回退機制：若指定稀有度無可用道具，則從該地區隨機挑選一個非排除項
+        if (pool.length === 0) {
+            const fallbackPool = Object.entries(CONFIG.lootData)
+                .filter(([name, data]) => data.location === targetLocation && !exclude.includes(name))
+                .map(transformToItem);
+            
+            if (fallbackPool.length === 0) return null;
+            const fallbackTemplate = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
+            return Object.assign({}, fallbackTemplate);
+        }
+
+        // 5. 回傳隨機選中的物件複本
+        const template = pool[Math.floor(Math.random() * pool.length)];
+        return Object.assign({}, template);
+    },
                 generateSpecificItem(allowedTypes) {
                     const r = Math.random();
                     let rarityKey = "common";
